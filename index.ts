@@ -111,7 +111,7 @@ async function init() {
     ) === 'boolean'
 
   let targetDir = argv._[0]
-  const defaultProjectName = !targetDir ? 'vue-project' : targetDir
+  const defaultProjectName = !targetDir ? 'eHealth-project' : targetDir
 
   const forceOverwrite = argv.force
 
@@ -145,6 +145,7 @@ async function init() {
     // - Add Playwright for end-to-end testing?
     // - Add ESLint for code quality?
     // - Add Prettier for code formatting?
+
     result = await prompts(
       [
         {
@@ -184,99 +185,99 @@ async function init() {
           message: language.packageName.message,
           initial: () => toValidPackageName(targetDir),
           validate: (dir) => isValidPackageName(dir) || language.packageName.invalidMessage
-        },
-        {
-          name: 'needsTypeScript',
-          type: () => (isFeatureFlagsUsed ? null : 'toggle'),
-          message: language.needsTypeScript.message,
-          initial: false,
-          active: language.defaultToggleOptions.active,
-          inactive: language.defaultToggleOptions.inactive
-        },
-        {
-          name: 'needsJsx',
-          type: () => (isFeatureFlagsUsed ? null : 'toggle'),
-          message: language.needsJsx.message,
-          initial: false,
-          active: language.defaultToggleOptions.active,
-          inactive: language.defaultToggleOptions.inactive
-        },
-        {
-          name: 'needsRouter',
-          type: () => (isFeatureFlagsUsed ? null : 'toggle'),
-          message: language.needsRouter.message,
-          initial: false,
-          active: language.defaultToggleOptions.active,
-          inactive: language.defaultToggleOptions.inactive
-        },
-        {
-          name: 'needsPinia',
-          type: () => (isFeatureFlagsUsed ? null : 'toggle'),
-          message: language.needsPinia.message,
-          initial: false,
-          active: language.defaultToggleOptions.active,
-          inactive: language.defaultToggleOptions.inactive
-        },
-        {
-          name: 'needsVitest',
-          type: () => (isFeatureFlagsUsed ? null : 'toggle'),
-          message: language.needsVitest.message,
-          initial: false,
-          active: language.defaultToggleOptions.active,
-          inactive: language.defaultToggleOptions.inactive
-        },
-        {
-          name: 'needsE2eTesting',
-          type: () => (isFeatureFlagsUsed ? null : 'select'),
-          hint: language.needsE2eTesting.hint,
-          message: language.needsE2eTesting.message,
-          initial: 0,
-          choices: (prev, answers) => [
-            {
-              title: language.needsE2eTesting.selectOptions.negative.title,
-              value: false
-            },
-            {
-              title: language.needsE2eTesting.selectOptions.cypress.title,
-              description: answers.needsVitest
-                ? undefined
-                : language.needsE2eTesting.selectOptions.cypress.desc,
-              value: 'cypress'
-            },
-            {
-              title: language.needsE2eTesting.selectOptions.nightwatch.title,
-              description: answers.needsVitest
-                ? undefined
-                : language.needsE2eTesting.selectOptions.nightwatch.desc,
-              value: 'nightwatch'
-            },
-            {
-              title: language.needsE2eTesting.selectOptions.playwright.title,
-              value: 'playwright'
-            }
-          ]
-        },
-        {
-          name: 'needsEslint',
-          type: () => (isFeatureFlagsUsed ? null : 'toggle'),
-          message: language.needsEslint.message,
-          initial: false,
-          active: language.defaultToggleOptions.active,
-          inactive: language.defaultToggleOptions.inactive
-        },
-        {
-          name: 'needsPrettier',
-          type: (prev, values) => {
-            if (isFeatureFlagsUsed || !values.needsEslint) {
-              return null
-            }
-            return 'toggle'
-          },
-          message: language.needsPrettier.message,
-          initial: false,
-          active: language.defaultToggleOptions.active,
-          inactive: language.defaultToggleOptions.inactive
         }
+        // {
+        //   name: 'needsTypeScript',
+        //   type: () => (isFeatureFlagsUsed ? null : 'toggle'),
+        //   message: language.needsTypeScript.message,
+        //   initial: false,
+        //   active: language.defaultToggleOptions.active,
+        //   inactive: language.defaultToggleOptions.inactive
+        // },
+        // {
+        //   name: 'needsJsx',
+        //   type: () => (isFeatureFlagsUsed ? null : 'toggle'),
+        //   message: language.needsJsx.message,
+        //   initial: false,
+        //   active: language.defaultToggleOptions.active,
+        //   inactive: language.defaultToggleOptions.inactive
+        // },
+        // {
+        //   name: 'needsRouter',
+        //   type: () => (isFeatureFlagsUsed ? null : 'toggle'),
+        //   message: language.needsRouter.message,
+        //   initial: false,
+        //   active: language.defaultToggleOptions.active,
+        //   inactive: language.defaultToggleOptions.inactive
+        // },
+        // {
+        //   name: 'needsPinia',
+        //   type: () => (isFeatureFlagsUsed ? null : 'toggle'),
+        //   message: language.needsPinia.message,
+        //   initial: false,
+        //   active: language.defaultToggleOptions.active,
+        //   inactive: language.defaultToggleOptions.inactive
+        // },
+        // {
+        //   name: 'needsVitest',
+        //   type: () => (isFeatureFlagsUsed ? null : 'toggle'),
+        //   message: language.needsVitest.message,
+        //   initial: false,
+        //   active: language.defaultToggleOptions.active,
+        //   inactive: language.defaultToggleOptions.inactive
+        // },
+        // {
+        //   name: 'needsE2eTesting',
+        //   type: () => (isFeatureFlagsUsed ? null : 'select'),
+        //   hint: language.needsE2eTesting.hint,
+        //   message: language.needsE2eTesting.message,
+        //   initial: 0,
+        //   choices: (prev, answers) => [
+        //     {
+        //       title: language.needsE2eTesting.selectOptions.negative.title,
+        //       value: false
+        //     },
+        //     {
+        //       title: language.needsE2eTesting.selectOptions.cypress.title,
+        //       description: answers.needsVitest
+        //         ? undefined
+        //         : language.needsE2eTesting.selectOptions.cypress.desc,
+        //       value: 'cypress'
+        //     },
+        //     {
+        //       title: language.needsE2eTesting.selectOptions.nightwatch.title,
+        //       description: answers.needsVitest
+        //         ? undefined
+        //         : language.needsE2eTesting.selectOptions.nightwatch.desc,
+        //       value: 'nightwatch'
+        //     },
+        //     {
+        //       title: language.needsE2eTesting.selectOptions.playwright.title,
+        //       value: 'playwright'
+        //     }
+        //   ]
+        // },
+        // {
+        //   name: 'needsEslint',
+        //   type: () => (isFeatureFlagsUsed ? null : 'toggle'),
+        //   message: language.needsEslint.message,
+        //   initial: false,
+        //   active: language.defaultToggleOptions.active,
+        //   inactive: language.defaultToggleOptions.inactive
+        // },
+        // {
+        //   name: 'needsPrettier',
+        //   type: (prev, values) => {
+        //     if (isFeatureFlagsUsed || !values.needsEslint) {
+        //       return null
+        //     }
+        //     return 'toggle'
+        //   },
+        //   message: language.needsPrettier.message,
+        //   initial: false,
+        //   active: language.defaultToggleOptions.active,
+        //   inactive: language.defaultToggleOptions.inactive
+        // }
       ],
       {
         onCancel: () => {
@@ -295,21 +296,20 @@ async function init() {
     projectName,
     packageName = projectName ?? defaultProjectName,
     shouldOverwrite = argv.force,
-    needsJsx = argv.jsx,
-    needsTypeScript = argv.typescript,
-    needsRouter = argv.router,
-    needsPinia = argv.pinia,
-    needsVitest = argv.vitest || argv.tests,
-    needsEslint = argv.eslint || argv['eslint-with-prettier'],
-    needsPrettier = argv['eslint-with-prettier']
+    needsJsx = false,
+    needsTypeScript = true,
+    needsRouter = true,
+    needsPinia = false,
+    needsVitest = true,
+    needsEslint = true,
+    needsPrettier = true
   } = result
 
-  const { needsE2eTesting } = result
-  const needsCypress = argv.cypress || argv.tests || needsE2eTesting === 'cypress'
+  const needsCypress = true
   const needsCypressCT = needsCypress && !needsVitest
-  const needsNightwatch = argv.nightwatch || needsE2eTesting === 'nightwatch'
-  const needsNightwatchCT = needsNightwatch && !needsVitest
-  const needsPlaywright = argv.playwright || needsE2eTesting === 'playwright'
+  const needsNightwatch = false
+  const needsNightwatchCT = false
+  const needsPlaywright = false
 
   const root = path.join(cwd, targetDir)
 
@@ -338,6 +338,9 @@ async function init() {
   render('base')
 
   // Add configs.
+  render('config/tailwind')
+  render('config/ehi')
+
   if (needsJsx) {
     render('config/jsx')
   }
@@ -495,7 +498,7 @@ async function init() {
       root,
       () => {},
       (filepath) => {
-        if (filepath.endsWith('.js')) {
+        if (filepath.endsWith('.js') && !filepath.endsWith('.cjs')) {
           const tsFilePath = filepath.replace(/\.js$/, '.ts')
           if (fs.existsSync(tsFilePath)) {
             fs.unlinkSync(filepath)

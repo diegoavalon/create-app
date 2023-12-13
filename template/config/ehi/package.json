@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@fontsource-variable/open-sans": "^5.0.19",
+    "@fontsource/poppins": "^5.0.8",
+    "@medicare-tools/styles": "^2.25.10",
+    "npm-repo": "link:registry=https:/repo.ehealthinsurance.com/artifactory/api/npm/npm-repo"
+  }
+}

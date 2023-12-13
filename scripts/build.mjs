@@ -71,9 +71,6 @@ await esbuild.build({
                 .map((dependency) => {
                   return (
                     `## ${dependency.packageJson.name}\n\n` +
-                    `License: ${dependency.packageJson.license}\n` +
-                    `By: ${dependency.packageJson.author.name}\n` +
-                    `Repository: ${dependency.packageJson.repository.url}\n\n` +
                     dependency.licenseText
                       .split('\n')
                       .map((line) => (line ? `> ${line}` : '>'))

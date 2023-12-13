@@ -4,7 +4,11 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "update-tools:rc": "yarn add @medicare-tools/web-components@rc @medicare/muse-v3@rc @medicare-tools/styles@rc @medicare-tools/login-widget@rc @medicare-tools/ui@rc @medicare-tools/utils@rc @medicare-tools/bootstrap@rc @medicare-tools/stepper@rc",
+    "update-tools:prod": "yarn add @medicare-tools/web-components@1 @medicare/muse-v3@1 @medicare-tools/styles@1 @medicare-tools/login-widget@1 @medicare-tools/ui@1 @medicare-tools/utils@1 @medicare-tools/bootstrap@1  @medicare-tools/stepper@1",
+    "update-tools:next": "yarn add @medicare-tools/web-components@2 @medicare/muse-v3@2 @medicare-tools/styles@2 @medicare-tools/login-widget@2 @medicare-tools/ui@2 @medicare-tools/utils@2 @medicare-tools/bootstrap@2  @medicare-tools/stepper@2",
+    "remove-tools": "yarn remove @medicare-tools/web-components @medicare/muse-v3 @medicare-tools/login-widget @medicare-tools/styles @medicare-tools/ui @medicare-tools/utils @medicare-tools/bootstrap  @medicare-tools/stepper"
   },
   "dependencies": {
     "vue": "^3.3.11"
